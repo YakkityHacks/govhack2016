@@ -53,4 +53,7 @@ request.get( 'https://api.planningalerts.org.au/applications.js', {
     if ( error ) throw error;
     console.log( JSON.stringify( body, null, '    ' ) );
     console.log('Count', body.length);
+    var count = 0;
+    body = body.filter(item => count++ < 2);
+    console.log('Count', body.length);
 } );
