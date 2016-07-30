@@ -14,7 +14,6 @@ const
   bodyParser = require('body-parser'),
   express = require('express'),
   https = require('https'),
-  request = require('request'),
   envVars = require('./lib/envVars.js'),
   messengerGeneric = require('./lib/messengerGeneric.js'),
   botLoop = require('./lib/botLoop.js');
