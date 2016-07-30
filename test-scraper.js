@@ -2,7 +2,8 @@ const request = require( 'request' ).defaults( {
     json: true,
 } );
 
-const COOORD_WIDTH = 10;
+const COOORD_WIDTH = 0.01; //1.11km
+
 var coords = {
     // lat: -27.468217,
     // lng: 153.0590176,
@@ -12,8 +13,12 @@ var coords = {
     // lng: 153.325195,
 
     // bne
-    lat: -27.468217,
-    lng: 153.0590176,
+    // lat: -27.468217,
+    // lng: 153.0590176,
+
+    // uni
+    lat: -27.4976785,
+    lng: 153.0141404,
 };
 
 var b = {
@@ -47,4 +52,5 @@ request.get( 'https://api.planningalerts.org.au/applications.js', {
 }, ( error, response, body ) => {
     if ( error ) throw error;
     console.log( JSON.stringify( body, null, '    ' ) );
+    console.log('Count', body.length);
 } );
