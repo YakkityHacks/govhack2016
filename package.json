@@ -15,11 +15,13 @@
   "author": "Facebook",
   "license": "ISC",
   "dependencies": {
+    "async": "^2.0.1",
     "body-parser": "^1.15.0",
+    "csv-parser": "^1.9.3",
     "ejs": "^2.4.2",
     "express": "^4.13.4",
-    "request": "^2.74.0",
-    "googlemaps": "^1.11.1"
+    "googlemaps": "^1.11.1",
+    "request": "^2.74.0"
   },
   "engines": {
     "node": "~4.1.2"
