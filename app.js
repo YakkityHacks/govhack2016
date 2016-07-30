@@ -15,6 +15,7 @@ const
   express = require('express'),
   https = require('https'),
   request = require('request'),
+  envVars = require('./lib/envVars.js'),
   messengerGeneric = require('./lib/messengerGeneric.js'),
   botLoop = require('./lib/botLoop.js');
 
@@ -24,24 +25,6 @@ app.set('view engine', 'ejs');
 app.use(bodyParser.json({ verify: messengerGeneric.verifyRequestSignature }));
 app.use(express.static('public'));
 
-// App Secret can be retrieved from the App Dashboard
-const APP_SECRET = process.env.MESSENGER_APP_SECRET;
-
-// Arbitrary value used to validate a webhook
-const VALIDATION_TOKEN = process.env.MESSENGER_VALIDATION_TOKEN;
-
-// Generate a page access token for your page from the App Dashboard
-const PAGE_ACCESS_TOKEN = process.env.MESSENGER_PAGE_ACCESS_TOKEN;
-
-// URL where the app is running (include protocol). Used to point to scripts and
-// assets located at this address.
-const SERVER_URL = process.env.SERVER_URL;
-
-if (!(APP_SECRET && VALIDATION_TOKEN && PAGE_ACCESS_TOKEN && SERVER_URL)) {
-  console.error("Missing config values");
-  process.exit(1);
-}
-
 /*
  * Use your own validation token. Check that the token used in the Webhook
  * setup is the same token used here.
@@ -49,7 +32,7 @@ if (!(APP_SECRET && VALIDATION_TOKEN && PAGE_ACCESS_TOKEN && SERVER_URL)) {
  */
 app.get('/webhook', function(req, res) {
   if (req.query['hub.mode'] === 'subscribe' &&
-      req.query['hub.verify_token'] === VALIDATION_TOKEN) {
+      req.query['hub.verify_token'] === envVars.VALIDATION_TOKEN) {
     console.log("Validating webhook");
     res.status(200).send(req.query['hub.challenge']);
   } else {
