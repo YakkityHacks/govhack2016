@@ -246,7 +246,7 @@ function receivedMessage(event) {
     switch (messageText) {
       //@TODO have a "welcoming message" on new thread
       case 'hello':
-        sendTextMessage(recipientId, 'Welcome to our service. To get started, can you share your location?');
+        sendTextMessage(senderID, 'Welcome to our service. To get started, can you share your location?');
         break;
 
       case 'image':
