@@ -244,6 +244,11 @@ function receivedMessage(event) {
     // keywords and send back the corresponding example. Otherwise, just echo
     // the text we received.
     switch (messageText) {
+      //@TODO have a "welcoming message" on new thread
+      case 'hello':
+        sendTextMessage(recipientId, 'Welcome to our service. To get started, can you share your location?');
+        break;
+
       case 'image':
         sendImageMessage(senderID);
         break;
