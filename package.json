@@ -21,7 +21,8 @@
     "ejs": "^2.4.2",
     "express": "^4.13.4",
     "googlemaps": "^1.11.1",
-    "request": "^2.74.0"
+    "request": "^2.74.0",
+    "xml2js": "^0.4.17"
   },
   "engines": {
     "node": "~4.1.2"
