@@ -1,6 +1,6 @@
 # Fresh Plan - Facebook Messenger Bot
 
-This project was built as part of the 2016 [GovHack][http://www.govhack.org/] event, which aims to bring startups, developers and the broad community together to create solutions using open government data.
+This project was built as part of the 2016 [GovHack](http://www.govhack.org/) event, which aims to bring startups, developers and the broad community together to create solutions using open government data.
 
 **Fresh Plan** is a Facebook Messenger bot and allows community members, planners and property developers to interact with large amounts of data in a human-friendly way, to increase participation and reduce costs/friction for governments and planners to provide personalised services to the different stakeholders.
 
