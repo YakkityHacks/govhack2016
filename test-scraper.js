@@ -1,5 +1,6 @@
 const csv = require( 'csv-parser' ),
     fs = require( 'fs' ),
+    xml2js = require( 'xml2js' ),
     request = require( 'request' ).defaults( {
         json: true,
     } );
@@ -23,8 +24,12 @@ var coords = {
     // lng: 153.0141404,
 
     // logan
-    lat: -27.694530,
-    lng: 153.152546,
+    // lat: -27.694530,
+    // lng: 153.152546,
+
+    // gelong
+    lat: -38.0969637,
+    lng: 144.334708,
 };
 
 var logan = {};
@@ -36,6 +41,18 @@ fs.createReadStream( './data/Logan_City_Building_Works.csv' )
         var applicationNumber = data[ Object.keys( data )[ 0 ] ];
         logan[ applicationNumber ] = data;
     } );
+
+var geelong = {};
+var xmlparser = new xml2js.Parser();
+fs.readFile( './data/geelong-adplanning-all.xml', function ( error, data ) {
+    if ( error ) throw error;
+    xmlparser.parseString( data, function ( error, result ) {
+        if ( error ) throw error;
+        result.rss.channel[ 0 ].item.forEach( item => {
+            geelong[ item.GUID ] = item;
+        } );
+    } );
+} );
 
 var qs = {
     key: 'WMGj4AkJOg+iLtT8qhha',
@@ -52,10 +69,17 @@ request.get( 'https://api.planningalerts.org.au/applications.js', {
     if ( error ) throw error;
     console.log( 'Count', body.length );
     body.forEach( item => {
-        var loganKey = item.application.council_reference ? item.application.council_reference.replace( '-', '/' ) : null;
+        var key = item.application.council_reference;
+        var loganKey = key ? key.replace( '-', '/' ) : null;
         if ( loganKey && logan[ loganKey ] ) {
-            console.log( loganKey, item.application.council_reference );
+            console.log( 'Found Logan data', loganKey );
             item.data = logan[ loganKey ];
+            item.data.status = item.data.Status;
+        }
+        if ( geelong[ key ] ) {
+            console.log( 'Found Gelong data', key );
+            item.data = geelong[ key ];
+            item.data.status = 'Open';
         }
     } );
 
@@ -69,8 +93,8 @@ request.get( 'https://api.planningalerts.org.au/applications.js', {
         return getDistance( coords, itemA ) - getDistance( coords, itemB );
     } );
 
-    // body = body.filter( item => !!item.data );
+    body = body.filter( item => !!item.data );
 
-    console.log( JSON.stringify( body[0], null, '    ' ) );
+    console.log( JSON.stringify( body[ 0 ], null, '    ' ) );
     console.log( 'Count', body.length );
 } );
