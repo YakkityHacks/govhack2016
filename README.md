@@ -1,36 +1,32 @@
-# Messenger Platform Sample -- node.js
+# Fresh Plan - Facebook Messenger Bot
 
-This project is an example server for Messenger Platform built in Node.js. With this app, you can send it messages and it will echo them back to you. You can also see examples of the different types of Structured Messages. 
+This project was built as part of the 2016 [GovHack][http://www.govhack.org/] event, which aims to bring startups, developers and the broad community together to create solutions using open government data.
 
-It contains the following functionality:
+**Fresh Plan** is a Facebook Messenger bot and allows community members, planners and property developers to interact with large amounts of data in a human-friendly way, to increase participation and reduce costs/friction for governments and planners to provide personalised services to the different stakeholders.
 
-* Webhook (specifically for Messenger Platform events)
-* Send API 
-* Web Plugins
-* Messenger Platform v1.1 features
-
-Follow the [walk-through](https://developers.facebook.com/docs/messenger-platform/quickstart) to learn about this project in more detail.
+The current prototype allows users to explore **property development applications** in the surroundings of an area they select. Users get a quick view of the properties, their address and type of application. This data is pulled from government data sources. The bot also makes it easy for users to access more details about these applications, and facilitates the process of participation through the official channels available in most property applications.
 
 ## Setup
 
-Set the values in `config/default.json` before running the sample. Descriptions of each parameter can be found in `app.js`. Alternatively, you can set the corresponding environment variables as defined in `app.js`.
+Run `npm start` to start the bot app in a server. In order for it to work as a Facebook Messenger, follow the [official documentation](https://developers.facebook.com/docs/messenger-platform).
 
-Replace values for `APP_ID` and `PAGE_ID` in `public/index.html`.
+The server will need to have the following environmental variables for the bot to work:
 
-## Run
+- APP_SECRET: secret of your Facebook app.
+- VALIDATION_TOKEN: arbitrary value used to validate your webhook.
+- PAGE_ACCESS_TOKEN: token of your Facebook page.
+- SERVER_URL: url of your live server.
+- GOOGLE_MAPS_API_KEY: Google API key, must have Google Maps and Street Views API enabled.
 
-You can start the server by running `npm start`. However, the webhook must be at a public URL that the Facebook servers can reach. Therefore, running the server locally on your machine will not work.
+# Team
 
-You can run this example on a cloud service provider like Heroku, Google Cloud Platform or AWS. Note that webhooks must have a valid SSL certificate, signed by a certificate authority. Read more about setting up SSL for a [Webhook](https://developers.facebook.com/docs/graph-api/webhooks#setup).
-
-## Webhook
-
-All webhook code is in `app.js`. It is routed to `/webhook`. This project handles callbacks for authentication, messages, delivery confirmation and postbacks. More details are available at the [reference docs](https://developers.facebook.com/docs/messenger-platform/webhook-reference).
-
-## "Send to Messenger" and "Message Us" Plugin
-
-An example of the "Send to Messenger" plugin and "Message Us" plugin are located at `index.html`. The "Send to Messenger" plugin can be used to trigger an authentication event. More details are available at the [reference docs](https://developers.facebook.com/docs/messenger-platform/plugin-reference).
+- Andrew Saul  
+- Dale Freya
+- Elizabeth Gray
+- Glen Arrowsmith
+- Loyce Lau
+- Pablo Farias Navarro
 
 ## License
 
-See the LICENSE file in the root directory of this source tree. Feel free to useand modify the code.
+See the LICENSE file in the root directory of this source tree.
