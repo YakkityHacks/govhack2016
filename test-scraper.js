@@ -22,9 +22,9 @@ var coords = {
     // lat: -27.4976785,
     // lng: 153.0141404,
 
-    // crestmead
-    lat: -27.6862322,
-    lng: 153.0684309,
+    // logan
+    lat: -27.694530,
+    lng: 153.152546,
 };
 
 var logan = {};
@@ -58,7 +58,19 @@ request.get( 'https://api.planningalerts.org.au/applications.js', {
             item.data = logan[ loganKey ];
         }
     } );
-    body = body.filter( item => !!item.data );
-    console.log( JSON.stringify( body, null, '    ' ) );
+
+    var getDistance = ( coords, item ) => {
+        var dx = coords.lng - item.application.lng;
+        var dy = coords.lat - item.application.lat;
+        var dist = Math.sqrt( Math.pow( dx, 2 ), Math.pow( dy, 2 ) );
+        return dist;
+    };
+    body.sort( ( itemA, itemB ) => {
+        return getDistance( coords, itemA ) - getDistance( coords, itemB );
+    } );
+
+    // body = body.filter( item => !!item.data );
+
+    console.log( JSON.stringify( body[0], null, '    ' ) );
     console.log( 'Count', body.length );
 } );
