@@ -1,18 +1,14 @@
 {
-  "name": "messenger-get-started",
+  "name": "fresh-plans",
   "version": "1.0.0",
-  "description": "Get started example for Messenger Platform",
+  "description": "Fresh Plans",
   "main": "app.js",
   "scripts": {
     "start": "node app.js",
     "lint": "jshint --exclude node_modules .",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
-  "repository": {
-    "type": "git",
-    "url": "https://source.developers.google.com/p/messenger-get-started/r/default"
-  },
-  "author": "Facebook",
+  "author": "Glen Arrowsmith",
   "license": "ISC",
   "dependencies": {
     "async": "^2.0.1",
