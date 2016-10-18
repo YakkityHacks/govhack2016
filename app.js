@@ -99,8 +99,6 @@ app.get( '/authorize', function ( req, res ) {
 // certificate authority.
 app.listen( app.get( 'port' ), function () {
     console.log( 'Node app is running on port', app.get( 'port' ) );
-    console.log( 'MESSENGER_VALIDATION_TOKEN', process.env.MESSENGER_VALIDATION_TOKEN );
-    console.log( 'MESSENGER_APP_SECRET', process.env.MESSENGER_APP_SECRET );
 } );
 
 module.exports = app;
